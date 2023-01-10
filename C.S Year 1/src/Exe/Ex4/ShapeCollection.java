@@ -1,7 +1,9 @@
 package Exe.Ex4;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import Exe.Ex4.geo.Rect2D;
 
@@ -66,26 +68,15 @@ public class ShapeCollection implements ShapeCollectionable{
 
 	@Override
 	public void removeAll() {
-		//////////add your code below ///////////
-		
-		
-		//////////////////////////////////////////
+		_shapes.clear();
 	}
 
 	@Override
 	public void save(String file) {
-		//////////add your code below ///////////
-		
-		
-		//////////////////////////////////////////
 	}
 
 	@Override
 	public void load(String file) {
-		////////// add your code below ///////////
-		
-		
-		//////////////////////////////////////////
 	}
 	@Override
 	public Rect2D getBoundingBox() {
