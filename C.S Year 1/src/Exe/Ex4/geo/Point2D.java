@@ -92,12 +92,19 @@ public class Point2D{
 	/////////////////////// You should implement the methods below ///////////////////////////
 	public void scale(Point2D cen, double ratio) {
 		//////////add your code below ///////////
-		
+		double newX = cen.x() + (this._x-cen._x)*ratio;
+		double newY = cen.y() + (this._y-cen._y)*ratio;
+        this._x = newX;
+        this._y = newY;
 		/////////////////////////////////////////
 	}
 	public void rotate(Point2D cen, double angleDegrees) {
 		//////////add your code below ///////////
-		
+		double rad = Math.toRadians(angleDegrees);
+		double atan  = Math.atan2(this._y-cen._y,this._x-cen._x) + rad;
+		double distance = this.distance(cen);
+		this._x = cen.x() + Math.cos(atan)*distance;
+		this._y = cen.y() + Math.sin(atan)*distance;
 		/////////////////////////////////////////
 	}
    

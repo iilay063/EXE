@@ -51,8 +51,9 @@ public class Triangle2D implements GeoShapeable{
 
 	@Override
 	public void move(Point2D vec) {
-		// TODO Auto-generated method stub
-
+		_firstPoint.move(vec);
+		_secondPoint.move(vec);
+		_thirdPoint.move(vec);
 	}
 
 	@Override
@@ -65,14 +66,16 @@ public class Triangle2D implements GeoShapeable{
 
 	@Override
 	public void scale(Point2D center, double ratio) {
-		// TODO Auto-generated method stub
-
+		_firstPoint.scale(center,ratio);
+		_secondPoint.scale(center,ratio);
+		_thirdPoint.scale(center,ratio);
 	}
 
 	@Override
 	public void rotate(Point2D center, double angleDegrees) {
-		// TODO Auto-generated method stub
-
+		_firstPoint.rotate(center,angleDegrees);
+		_secondPoint.rotate(center,angleDegrees);
+		_thirdPoint.rotate(center,angleDegrees);
 	}
 
 	@Override
@@ -82,6 +85,10 @@ public class Triangle2D implements GeoShapeable{
 		pointCollection[1] = new Point2D(_secondPoint);
 		pointCollection[2] = new Point2D(_thirdPoint);
 		return pointCollection;
+	}
+	public String toString() {
+		return "Triangle2D," + _firstPoint.x() + "," + _firstPoint.y() + ","
+				+ _secondPoint.x() + "," + _secondPoint.y() + "," + _thirdPoint.x() + "," + _thirdPoint.y();
 	}
 
 }

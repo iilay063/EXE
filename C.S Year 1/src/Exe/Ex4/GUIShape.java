@@ -5,6 +5,8 @@ package Exe.Ex4;
  * @author I2CS
  */
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 import Exe.Ex4.geo.Circle2D;
 import Exe.Ex4.geo.GeoShapeable;
@@ -32,6 +34,11 @@ public class GUIShape implements GUI_Shapeable{
 	}
 	public GUIShape(GUIShape ot) {
 		this(ot._g, ot._fill, ot._color, ot._tag);
+	}
+
+	public GUIShape(String s){
+		String[] arr = s.split(",");
+		init(arr);
 	}
 	
 	@Override
@@ -76,8 +83,33 @@ public class GUIShape implements GUI_Shapeable{
 		return cp;
 	}
 	@Override
-	public String toString() {return null;}
+	public String toString() {
+		return "GUIShape," + _color.getRGB() +"," + _fill+"," + _tag +","+ _g.toString()  ;
+	}
 	private void init(String[] ww) {
+		_color = new Color(Integer.parseInt(ww[1]));
+		_fill = Boolean.parseBoolean(ww[2]);
+		_tag = Integer.parseInt(ww[3]);
+		if(ww[4].equals("Circle2D")){
+			_g = new Circle2D(new Point2D(Double.parseDouble(ww[5]),Double.parseDouble(ww[6])),
+								Double.parseDouble(ww[7]));
+		}if(ww[4].equals("Polygon2D")){
+			ArrayList<Point2D> point2DS = new ArrayList<>();
+			for (int i = 5; i < ww.length; i+=2) {
+				point2DS.add(new Point2D(Double.parseDouble(ww[i]),Double.parseDouble(ww[i+1])));
+			}
+			_g = new Polygon2D(point2DS);
+		}if(ww[4].equals("Triangle2D")){
+			_g = new Triangle2D(new Point2D(Double.parseDouble(ww[5]),Double.parseDouble(ww[6])),
+					new Point2D(Double.parseDouble(ww[7]) ,Double.parseDouble(ww[8]) ) , new Point2D(Double.parseDouble(ww[9]) ,Double.parseDouble(ww[10]) ));
+		}if(ww[4].equals("Rect2D")){
+			_g = new Rect2D(new Point2D(Double.parseDouble(ww[5]),Double.parseDouble(ww[6])),
+					new Point2D(Double.parseDouble(ww[11]) ,Double.parseDouble(ww[12]) ) );
+		}if(ww[4].equals("Segment2D")){
+			_g = new Segment2D(new Point2D(Double.parseDouble(ww[5]),Double.parseDouble(ww[6])),
+					new Point2D(Double.parseDouble(ww[7]) ,Double.parseDouble(ww[8]) ) );
+		}
+
 
 	}
 	@Override
@@ -90,7 +122,6 @@ public class GUIShape implements GUI_Shapeable{
 	}
 	@Override
 	public void setShape(GeoShapeable g) {
-		// TODO Auto-generated method stub
-		
+		_g = g;
 	}
 }

@@ -34,7 +34,7 @@ public class Rect2D implements GeoShapeable {
 	@Override
 	public double area() {
 		double height = Math.abs(this._firstPoint.y() - this._secondPoint.y());
-		double width =  Math.abs(this._firstPoint.x() - this._secondPoint.y());
+		double width =  Math.abs(this._firstPoint.x() - this._secondPoint.x());
 		double area = height * width;
 		return area;
 	}
@@ -42,15 +42,15 @@ public class Rect2D implements GeoShapeable {
 	@Override
 	public double perimeter() {
 		double length = Math.abs(this._firstPoint.y() - this._secondPoint.y());
-		double height =  Math.abs(this._firstPoint.x() - this._secondPoint.y());
+		double height =  Math.abs(this._firstPoint.x() - this._secondPoint.x());
 		double perimeter = (length * 2) + (height * 2);
 		return perimeter;
 	}
 
 	@Override
 	public void move(Point2D vec) {
-		// TODO Auto-generated method stub
-		
+		_firstPoint.move(vec);
+		_secondPoint.move(vec);
 	}
 
 	@Override
@@ -62,23 +62,33 @@ public class Rect2D implements GeoShapeable {
 
 	@Override
 	public void scale(Point2D center, double ratio) {
-		// TODO Auto-generated method stub
-		
+		_firstPoint.scale(center,ratio);
+		_secondPoint.scale(center,ratio);
 	}
 
 	@Override
 	public void rotate(Point2D center, double angleDegrees) {
-		// TODO Auto-generated method stub
-		
+		_firstPoint.rotate(center,angleDegrees);
+		_secondPoint.rotate(center,angleDegrees);
 	}
 
 	@Override
 	public Point2D[] getPoints() {
 		Point2D[] pCollection = new Point2D[2];
-		pCollection[0] =new Point2D(this._firstPoint);
-		pCollection[1] = new Point2D(this._secondPoint);
+		double xMin = Math.min(this._firstPoint.x() , this._secondPoint.x());
+		double xMax = Math.max(this._firstPoint.x() , this._secondPoint.x());
+		double yMin = Math.min(this._firstPoint.y() , this._secondPoint.y());
+		double yMax = Math.max(this._firstPoint.y() , this._secondPoint.y());
+		pCollection[0] =new Point2D(xMin,yMin);
+		pCollection[1] = new Point2D(xMax,yMax);
 
 		return pCollection;
 	}
 
+	@Override
+	public String toString() {
+		return "Rect2D," + _firstPoint.x() + "," + _firstPoint.y() + ","
+				+ _firstPoint.x() + "," + _secondPoint.y() + "," + _secondPoint.x() + "," + _firstPoint.y()
+				+ "," + _secondPoint.x() + "," + _secondPoint.y();
+	}
 }

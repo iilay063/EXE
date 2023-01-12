@@ -30,32 +30,18 @@ public class Segment2D implements GeoShapeable{
 	@Override
 	/** area of a straight line is just the length of the line itself so calculating the distance between _firstPoint and _secondPoint would be sufficient*/
 	public double area() {
-		Point2D firstPoint = new Point2D(_firstPoint.x(), _firstPoint.y());
-		Point2D secondPoint = new Point2D(_secondPoint.x(), _secondPoint.y());
-		double x1 = firstPoint.x();
-		double y1 = firstPoint.y();
-		double x2 = secondPoint.x();
-		double y2 = secondPoint.y();
-		double length = Math.sqrt(Math.pow(2 , (x2 - x1))+Math.pow(2 ,(y2 - y1) ));;
-		return length;
+		return 0;
 	}
 
 	@Override
 	public double perimeter() {
-		Point2D firstPoint = new Point2D(_firstPoint.x(), _firstPoint.y());
-		Point2D secondPoint = new Point2D(_secondPoint.x(), _secondPoint.y());
-		double x1 = firstPoint.x();
-		double y1 = firstPoint.y();
-		double x2 = secondPoint.x();
-		double y2 = secondPoint.y();
-		double length = Math.sqrt(Math.pow(2 , (x2 - x1))+Math.pow(2 ,(y2 - y1) ));;
-		return length;
+		return _firstPoint.distance(_secondPoint);
 	}
 
 	@Override
 	public void move(Point2D vec) {
-		// TODO Auto-generated method stub
-		
+		_firstPoint.move(vec);
+		_secondPoint.move(vec);
 	}
 
 	@Override
@@ -68,14 +54,14 @@ public class Segment2D implements GeoShapeable{
 
 	@Override
 	public void scale(Point2D center, double ratio) {
-		// TODO Auto-generated method stub
-		
+		_firstPoint.scale(center,ratio);
+		_secondPoint.scale(center,ratio);
 	}
 
 	@Override
 	public void rotate(Point2D center, double angleDegrees) {
-		// TODO Auto-generated method stub
-		
+		_firstPoint.rotate(center,angleDegrees);
+		_secondPoint.rotate(center,angleDegrees);
 	}
 
 	@Override
@@ -84,6 +70,12 @@ public class Segment2D implements GeoShapeable{
 		ans[0] = new Point2D(this._firstPoint);
 		ans[1] = new Point2D(this._secondPoint);
 		return ans;
+	}
+
+	@Override
+	public String toString() {
+		return "Segment2D," + _firstPoint.x() + "," + _firstPoint.y() + ","
+				+ _secondPoint.x() + "," + _secondPoint.y();
 	}
 	
 }

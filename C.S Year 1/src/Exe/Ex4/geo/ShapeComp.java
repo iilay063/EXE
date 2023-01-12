@@ -13,7 +13,6 @@ import Exe.Ex4.GUI_Shapeable;
  *
  */
 public class ShapeComp implements Comparator<GUI_Shapeable>{
-	//////////add your code below ///////////
 	
 	
 	public static final Comparator<GUI_Shapeable> CompByToString = new ShapeComp(Ex4_Const.Sort_By_toString);
@@ -28,10 +27,21 @@ public class ShapeComp implements Comparator<GUI_Shapeable>{
 		int ans=0;
 		if(_flag == Ex4_Const.Sort_By_toString) {
 			ans = o1.toString().compareTo(o2.toString());
+		}if(_flag == Ex4_Const.Sort_By_Anti_toString){
+			ans = o2.toString().compareTo(o1.toString());
+		}if(_flag == Ex4_Const.Sort_By_Area){
+			ans = Double.compare(o1.getShape().area(),o2.getShape().area());
+		}if(_flag == Ex4_Const.Sort_By_Anti_Area){
+			ans = Double.compare(o2.getShape().area(),o1.getShape().area());
+		}if(_flag == Ex4_Const.Sort_By_Perimeter) {
+			ans = Double.compare(o1.getShape().perimeter(), o2.getShape().perimeter());
+		}if(_flag == Ex4_Const.Sort_By_Anti_Perimeter) {
+			ans = Double.compare(o2.getShape().perimeter(), o1.getShape().perimeter());
+		}if(_flag == Ex4_Const.Sort_By_Tag) {
+			ans = Double.compare(o1.getTag(), o2.getTag());
+		}if(_flag == Ex4_Const.Sort_By_Anti_Tag) {
+			ans = Double.compare(o2.getTag(), o1.getTag());
 		}
-		//////////add your code below ///////////
-		
-		//////////////////////////////////////////
 		return ans;
 	}
 
